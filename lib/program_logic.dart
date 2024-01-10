@@ -9,8 +9,14 @@ class Game extends StatefulWidget {
 
 List<String> num = [];
 TextEditingController? controller1;
-//TextEditingController ?controller1;
-//TextEditingController ?controller1;
+TextEditingController? controller2;
+TextEditingController? controller3;
+TextEditingController? controller4;
+TextEditingController? controller5;
+TextEditingController? controller6;
+TextEditingController? controller7;
+TextEditingController? controller8;
+TextEditingController? controller9;
 
 class _GameState extends State<Game> {
   @override
@@ -18,60 +24,72 @@ class _GameState extends State<Game> {
     return Container(
       padding: EdgeInsets.all(50),
       child: GridView.count(
-        crossAxisCount: 3,
+        crossAxisCount: 5,
         crossAxisSpacing: 10,
-        mainAxisSpacing: 20,
+        mainAxisSpacing: 5,
         children: <Widget>[
-          Container(
-            child: TextField(),
+          TextField(
+            onSubmitted: (value) {
+              num[0] = value;
+            },
           ),
-          Container(
-            child: TextButton(
-              onPressed: () {},
-              child: Text("1"),
-            ),
+          const Text(
+            "|",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 400, overflow: TextOverflow.visible),
           ),
-          Container(
-            child: TextButton(
-              onPressed: () {},
-              child: Text("1"),
-            ),
+          TextField(
+            onSubmitted: (value) {
+              num[0] = value;
+            },
           ),
-          Container(
-            child: TextButton(
-              onPressed: () {},
-              child: Text("1"),
-            ),
+          const Text(
+            "|",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 57),
           ),
-          Container(
-            child: TextButton(
-              onPressed: () {},
-              child: Text("1"),
-            ),
+          TextField(
+            onSubmitted: (value) {
+              num[0] = value;
+            },
           ),
-          Container(
-            child: TextButton(
-              onPressed: () {},
-              child: Text("1"),
-            ),
+          TextField(
+            onSubmitted: (value) {
+              num[0] = value;
+            },
           ),
-          Container(
-            child: TextButton(
-              onPressed: () {},
-              child: Text("1"),
-            ),
+          const Text(
+            "|",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 400, overflow: TextOverflow.visible),
           ),
-          Container(
-            child: TextButton(
-              onPressed: () {},
-              child: Text("1"),
-            ),
+          TextField(
+            onSubmitted: (value) {
+              num[0] = value;
+            },
           ),
-          Container(
-            child: TextButton(
-              onPressed: () {},
-              child: Text("1"),
-            ),
+          const Text("|"),
+          TextField(
+            onSubmitted: (value) {
+              num[0] = value;
+            },
+          ),
+          TextField(
+            onSubmitted: (value) {
+              num[0] = value;
+            },
+          ),
+          const Text("|"),
+          TextField(
+            onSubmitted: (value) {
+              num[0] = value;
+            },
+          ),
+          const Text("|"),
+          TextField(
+            onSubmitted: (value) {
+              num[0] = value;
+            },
           ),
         ],
       ),
