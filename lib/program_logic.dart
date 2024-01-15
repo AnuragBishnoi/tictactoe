@@ -8,7 +8,10 @@ class Game extends StatefulWidget {
 }
 
 List<String> num = [];
-TextEditingController? controller1;
+Image ximage = const Image(image: AssetImage("assets/x.png"));
+Image oimage = const Image(image: AssetImage("assets/o.png"));
+int counter = 0;
+/*TextEditingController? controller1;
 TextEditingController? controller2;
 TextEditingController? controller3;
 TextEditingController? controller4;
@@ -16,83 +19,28 @@ TextEditingController? controller5;
 TextEditingController? controller6;
 TextEditingController? controller7;
 TextEditingController? controller8;
-TextEditingController? controller9;
+TextEditingController? controller9;*/
 
 class _GameState extends State<Game> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(50),
-      child: GridView.count(
-        crossAxisCount: 5,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 5,
-        children: <Widget>[
-          TextField(
-            onSubmitted: (value) {
-              num[0] = value;
+    return GridView.builder(
+      gridDelegate:
+          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+      itemBuilder: (context, index) {
+        return Container(
+          decoration: BoxDecoration(border: Border.all()),
+          child: ElevatedButton(
+            onPressed: () {
+              if (counter == 0) {}
             },
+            child: oimage,
+            style: const ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(Colors.transparent)),
           ),
-          const Text(
-            "|",
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 400, overflow: TextOverflow.visible),
-          ),
-          TextField(
-            onSubmitted: (value) {
-              num[0] = value;
-            },
-          ),
-          const Text(
-            "|",
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 57),
-          ),
-          TextField(
-            onSubmitted: (value) {
-              num[0] = value;
-            },
-          ),
-          TextField(
-            onSubmitted: (value) {
-              num[0] = value;
-            },
-          ),
-          const Text(
-            "|",
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 400, overflow: TextOverflow.visible),
-          ),
-          TextField(
-            onSubmitted: (value) {
-              num[0] = value;
-            },
-          ),
-          const Text("|"),
-          TextField(
-            onSubmitted: (value) {
-              num[0] = value;
-            },
-          ),
-          TextField(
-            onSubmitted: (value) {
-              num[0] = value;
-            },
-          ),
-          const Text("|"),
-          TextField(
-            onSubmitted: (value) {
-              num[0] = value;
-            },
-          ),
-          const Text("|"),
-          TextField(
-            onSubmitted: (value) {
-              num[0] = value;
-            },
-          ),
-        ],
-      ),
+        );
+      },
+      itemCount: 9,
     );
   }
 }
