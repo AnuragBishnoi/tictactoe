@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class Game extends StatefulWidget {
@@ -7,10 +9,22 @@ class Game extends StatefulWidget {
   State<Game> createState() => _GameState();
 }
 
-List<String> num = [];
+int counter = 0;
+List<int> num =[0,0,0,0,0,0,0,0,0];
 Image ximage = const Image(image: AssetImage("assets/x.png"));
 Image oimage = const Image(image: AssetImage("assets/o.png"));
-int counter = 0;
+Image? visibleImage;
+void _ontapped(int index) {
+  if (num[index] == 0) {
+    num[index] = 1;
+    visibleImage = ximage;
+  }
+  if (num[index] == 0) {
+    num[index] = 1;
+    visibleImage = oimage;
+  }
+  }
+
 /*TextEditingController? controller1;
 TextEditingController? controller2;
 TextEditingController? controller3;
@@ -28,16 +42,11 @@ class _GameState extends State<Game> {
       gridDelegate:
           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
       itemBuilder: (context, index) {
-        return Container(
-          decoration: BoxDecoration(border: Border.all()),
-          child: ElevatedButton(
-            onPressed: () {
-              if (counter == 0) {}
-            },
-            child: oimage,
-            style: const ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(Colors.transparent)),
-          ),
+        return GestureDetector(
+          child: Container(
+            decoration: BoxDecoration(border: Border.all()),
+            child: ,
+          ),onTap: _ontapped(index),
         );
       },
       itemCount: 9,
