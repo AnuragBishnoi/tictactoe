@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 class Game extends StatefulWidget {
@@ -9,31 +7,11 @@ class Game extends StatefulWidget {
   State<Game> createState() => _GameState();
 }
 
-int counter = 0;
-List<int> num =[0,0,0,0,0,0,0,0,0];
+int turn = 0;
+List<int> num = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 Image ximage = const Image(image: AssetImage("assets/x.png"));
 Image oimage = const Image(image: AssetImage("assets/o.png"));
 Image? visibleImage;
-void _ontapped(int index) {
-  if (num[index] == 0) {
-    num[index] = 1;
-    visibleImage = ximage;
-  }
-  if (num[index] == 0) {
-    num[index] = 1;
-    visibleImage = oimage;
-  }
-  }
-
-/*TextEditingController? controller1;
-TextEditingController? controller2;
-TextEditingController? controller3;
-TextEditingController? controller4;
-TextEditingController? controller5;
-TextEditingController? controller6;
-TextEditingController? controller7;
-TextEditingController? controller8;
-TextEditingController? controller9;*/
 
 class _GameState extends State<Game> {
   @override
@@ -43,13 +21,32 @@ class _GameState extends State<Game> {
           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
       itemBuilder: (context, index) {
         return GestureDetector(
-          child: Container(
-            decoration: BoxDecoration(border: Border.all()),
-            child: ,
-          ),onTap: _ontapped(index),
-        );
+            child: Container(
+              decoration: BoxDecoration(border: Border.all()),
+              child: visibleImage,
+            ),
+            onTap: () {
+              ontapped(index);
+            });
       },
       itemCount: 9,
     );
+  }
+
+  void ontapped(int index) {
+    if (turn == 0 && num[index] == 0) {
+      setState(() {
+        num[index] = 1;
+        visibleImage = ximage;
+        turn = 1;
+      });
+    }
+    if (turn == 1 && num[index] == 0) {
+      setState(() {
+        num[index] = 2;
+        visibleImage = oimage;
+        turn = 0;
+      });
+    }
   }
 }
