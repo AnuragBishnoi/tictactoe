@@ -32,13 +32,14 @@ class GameState extends State<Game> {
               crossAxisCount: 3),
           itemBuilder: (context, index) {
             return GestureDetector(
-                child: Container(
-                  decoration: BoxDecoration(border: Border.all()),
-                  child: visibleImage[index],
-                ),
-                onTap: () {
-                  ontapped(index);
-                });
+              onTap: () {
+                ontapped(index);
+              },
+              child: Container(
+                decoration: BoxDecoration(border: Border.all()),
+                child: visibleImage[index],
+              ),
+            );
           },
           itemCount: 9,
         ),
@@ -62,15 +63,14 @@ class GameState extends State<Game> {
         visibleImage[index] = ximage;
         turn = 1;
         totalcount++;
-        if (totalcount >= 5) checkWinner(context);
       }
 
       if (turn == 1 && visibleImage[index] == null) {
         visibleImage[index] = oimage;
         turn = 0;
         totalcount++;
-        if (totalcount >= 5) checkWinner(context);
       }
+      if (totalcount >= 5) checkWinner(context);
     });
   }
 }
