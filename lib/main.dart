@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tictactoe/program_logic.dart';
+import 'package:tictactoe/gridview.dart';
 
 void main() {
   runApp(const MainApp());

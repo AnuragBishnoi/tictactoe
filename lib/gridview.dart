@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tictactoe/logic2.dart';
+import 'package:tictactoe/winner_check.dart';
 
 class Game extends StatefulWidget {
   const Game({super.key});
@@ -10,7 +10,7 @@ class Game extends StatefulWidget {
 
 class GameState extends State<Game> {
   int turn = 0;
-  int totalcount = 0;
+  static int totalcount = 0;
   Image ximage = const Image(image: AssetImage("assets/x.png"));
   Image oimage = const Image(image: AssetImage("assets/o.png"));
 
@@ -48,6 +48,7 @@ class GameState extends State<Game> {
           setState(() {
             visibleImage.setAll(0, replacementImage);
           });
+          totalcount = 0;
         },
         backgroundColor: Colors.orange[900],
         child: const Icon(Icons.refresh_outlined),
@@ -56,22 +57,20 @@ class GameState extends State<Game> {
   }
 
   void ontapped(int index) {
-    if (totalcount >= 5) {
-      logic();
-    }
-    if (turn == 0 && visibleImage[index] == null) {
-      setState(() {
+    setState(() {
+      if (turn == 0 && visibleImage[index] == null) {
         visibleImage[index] = ximage;
         turn = 1;
         totalcount++;
-      });
-    }
-    if (turn == 1 && visibleImage[index] == null) {
-      setState(() {
+        if (totalcount >= 5) checkWinner(context);
+      }
+
+      if (turn == 1 && visibleImage[index] == null) {
         visibleImage[index] = oimage;
         turn = 0;
         totalcount++;
-      });
-    }
+        if (totalcount >= 5) checkWinner(context);
+      }
+    });
   }
 }
