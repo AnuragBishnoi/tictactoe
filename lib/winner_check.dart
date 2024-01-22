@@ -1,7 +1,10 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 import 'gridview.dart';
 
+final player3 = AudioPlayer();
+final player4 = AudioPlayer();
 void checkWinner(BuildContext context) {
   if (GameState.visibleImage[0] == GameState.visibleImage[4] &&
       GameState.visibleImage[0] == GameState.visibleImage[8] &&
@@ -66,9 +69,17 @@ void showDialoge(BuildContext context, Image? myimage) {
     context: context,
     builder: (context) => AlertDialog(
       content: Row(
-        children: [Image(image: myimage!.image), const Text("Wins")],
+        children: [
+          CircleAvatar(backgroundImage: myimage!.image, radius: 50),
+          const Text("   Wins")
+        ],
       ),
     ),
   );
-  GameState.visibleImage.setAll(0, GameState.replacementImage);
+  if (myimage == GameState.ximage) {
+    player3.play(AssetSource("pi_pikachu.mp3"));
+  } else {
+    player4.play(AssetSource("balle_balle_shinchan.mp3"));
+    GameState.visibleImage.setAll(0, GameState.replacementImage);
+  }
 }

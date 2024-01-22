@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:tictactoe/winner_check.dart';
 
@@ -11,8 +12,11 @@ class Game extends StatefulWidget {
 class GameState extends State<Game> {
   int turn = 0;
   static int totalcount = 0;
-  Image ximage = const Image(image: AssetImage("assets/x.png"));
-  Image oimage = const Image(image: AssetImage("assets/o.png"));
+  static Image ximage = const Image(image: AssetImage("assets/pikachu.png"));
+  static Image oimage = const Image(image: AssetImage("assets/shinchan.png"));
+
+  final player1 = AudioPlayer();
+  final player2 = AudioPlayer();
 
   static List<Image?> visibleImage = List<Image?>.filled(9, null);
   static List<Image?> replacementImage = List<Image?>.filled(9, null);
@@ -57,16 +61,18 @@ class GameState extends State<Game> {
     );
   }
 
-  void ontapped(int index) {
+  void ontapped(int index) async {
     setState(() {
       if (turn == 0 && visibleImage[index] == null) {
         visibleImage[index] = ximage;
+        player1.play(AssetSource("pikachu.mp3"));
         turn = 1;
         totalcount++;
       }
 
       if (turn == 1 && visibleImage[index] == null) {
         visibleImage[index] = oimage;
+        player2.play(AssetSource("shinchan_ooh.mp3"));
         turn = 0;
         totalcount++;
       }
