@@ -1,3 +1,2 @@
 # tictactoe
-
-A new Flutter project.
+tictactoe with pikachu and shinchan with some interesting sounds.
